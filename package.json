@@ -1,13 +1,14 @@
 {
   "name": "mqtt-scripts",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "Node.js based script runner for use in MQTT based Smart Home environments",
   "main": "index.js",
   "scripts": {
-    "test": "camo-purge ; xo && nyc mocha test.js && nyc report --reporter=text-lcov | coveralls --force",
-    "testonly": "xo && nyc mocha test.js"
+    "test": "camo-purge ; xo && nyc mocha test.js --exit && nyc report --reporter=text-lcov | coveralls --force",
+    "testonly": "mocha test.js --exit",
+    "lintfix": "xo --fix"
   },
-  "author": "Sebastian 'hobbyquaker' Raff <hq@ccu.io>",
+  "author": "Sebastian 'hobbyquaker' Raff <hobbyquaker@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "coffee-compiler": "^0.3.2",
@@ -74,7 +75,8 @@
   "nyc": {
     "include": [
       "index.js",
-      "config.js"
+      "config.js",
+      "sandbox/*.js"
     ]
   }
 }

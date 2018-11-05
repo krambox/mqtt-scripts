@@ -197,9 +197,6 @@ subscribe('$Anwesenheit', {change: true}, function () {
 </dd>
 <dt><a href="#getValue">getValue(topic)</a> ⇒ <code>mixed</code></dt>
 <dd></dd>
-<dt><a href="#link">link(source, target, [value])</a></dt>
-<dd><p>Link topic(s) to other topic(s)</p>
-</dd>
 <dt><a href="#getProp">getProp(topic, [...property])</a> ⇒ <code>mixed</code></dt>
 <dd><p>Get a specific property of a topic</p>
 </dd>
@@ -207,6 +204,18 @@ subscribe('$Anwesenheit', {change: true}, function () {
 <dd></dd>
 <dt><a href="#age">age(topic)</a> ⇒ <code>number</code></dt>
 <dd></dd>
+<dt><a href="#link">link(source, target, [value])</a></dt>
+<dd><p>Link topic(s) to other topic(s)</p>
+</dd>
+<dt><a href="#combineBool">combineBool(srcs, targets)</a></dt>
+<dd><p>Combine topics through boolean or</p>
+</dd>
+<dt><a href="#combineMax">combineMax(srcs, targets)</a></dt>
+<dd><p>Publish maximum of combined topics</p>
+</dd>
+<dt><a href="#timer">timer(src, target, time)</a></dt>
+<dd><p>Publishes 1 on target for specific time after src changed to true</p>
+</dd>
 </dl>
 
 ## Typedefs
@@ -381,19 +390,6 @@ Set a value on one or more topics
 | --- | --- |
 | topic | <code>string</code> | 
 
-<a name="link"></a>
-
-## link(source, target, [value])
-Link topic(s) to other topic(s)
-
-**Kind**: global function  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| source | <code>string</code> \| <code>Array.&lt;string&gt;</code> | topic or array of topics to subscribe |
-| target | <code>string</code> \| <code>Array.&lt;string&gt;</code> | topic or array of topics to publish |
-| [value] | <code>mixed</code> | value to publish. If omitted the sources value is published. |
-
 <a name="getProp"></a>
 
 ## getProp(topic, [...property]) ⇒ <code>mixed</code>
@@ -426,6 +422,56 @@ getProp('hm//Bewegungsmelder Keller/MOTION', 'ts');
 | Param | Type |
 | --- | --- |
 | topic | <code>string</code> | 
+
+<a name="link"></a>
+
+## link(source, target, [value])
+Link topic(s) to other topic(s)
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| source | <code>string</code> \| <code>Array.&lt;string&gt;</code> | topic or array of topics to subscribe |
+| target | <code>string</code> \| <code>Array.&lt;string&gt;</code> | topic or array of topics to publish |
+| [value] | <code>mixed</code> | value to publish. If omitted the sources value is published. |
+
+<a name="combineBool"></a>
+
+## combineBool(srcs, targets)
+Combine topics through boolean or
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| srcs | <code>Array.&lt;string&gt;</code> | array of topics to subscribe |
+| targets | <code>string</code> | topic to publish |
+
+<a name="combineMax"></a>
+
+## combineMax(srcs, targets)
+Publish maximum of combined topics
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| srcs | <code>Array.&lt;string&gt;</code> | array of topics to subscribe |
+| targets | <code>string</code> | topic to publish |
+
+<a name="timer"></a>
+
+## timer(src, target, time)
+Publishes 1 on target for specific time after src changed to true
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| src | <code>string</code> \| <code>Array.&lt;string&gt;</code> | topic or array of topics to subscribe |
+| target | <code>string</code> | topic to publish |
+| time | <code>number</code> | timeout in milliseconds |
 
 <a name="subscribeCallback"></a>
 
